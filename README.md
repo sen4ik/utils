@@ -19,7 +19,7 @@ Second, add dependency to the pom.xml:
   <dependency>
     <groupId>com.github.sen4ik</groupId>
     <artifactId>utils</artifactId>
-    <version>9248591</version>
+    <version>44499</version>
   </dependency>
 </dependencies>
  ```
