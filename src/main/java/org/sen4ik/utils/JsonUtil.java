@@ -17,11 +17,11 @@ import java.util.Map;
 @Slf4j
 public class JsonUtil {
 
-    public String responseToJson(ValidatableResponse response){
+    public static String responseToJson(ValidatableResponse response){
         return response.extract().asString();
     }
 
-    public String getStringFromJsonResponse(ValidatableResponse response, String jsonPath){
+    public static String getStringFromJsonResponse(ValidatableResponse response, String jsonPath){
         log.info("CALLED: getStringFromJsonResponse()");
         String jsonBody = response.extract().asString();
         String str = JsonPath.read(jsonBody, jsonPath);
@@ -29,13 +29,13 @@ public class JsonUtil {
         return str;
     }
 
-    public int getIntFromJsonResponse(ValidatableResponse response, String jsonPath) {
+    public static int getIntFromJsonResponse(ValidatableResponse response, String jsonPath) {
         log.info("CALLED: getIntFromJsonResponse()");
         String jsonBody = response.extract().asString();
         return getIntFromJsonResponse(jsonBody, jsonPath);
     }
 
-    public int getIntFromJsonResponse(String json, String jsonPath){
+    public static int getIntFromJsonResponse(String json, String jsonPath){
         log.info("CALLED: getIntFromJsonResponse()");
         int i = JsonPath.read(json, jsonPath);
         log.info(jsonPath + ": " + i);
@@ -63,7 +63,7 @@ public class JsonUtil {
         return gson.fromJson(json, cl);
     }
 
-    private boolean compareResponseWithExpected(ValidatableResponse response, Object expectedObj){
+    public static boolean compareResponseWithExpected(ValidatableResponse response, Object expectedObj){
         log.info("CALLED: compareResponseWithExpected()");
         String json = response.extract().asString();
         Object resultObj = new Gson().fromJson(json, expectedObj.getClass());
@@ -71,17 +71,17 @@ public class JsonUtil {
         return result;
     }
 
-    public JsonElement jsonToJsonElement(String json){
+    public static JsonElement jsonToJsonElement(String json){
         log.info("CALLED: jsonToJsonElement()");
         JsonElement jsonElement =  new JsonParser().parse(json).getAsJsonArray();
         return jsonElement;
     }
 
-    public JsonElement objectToJsonElement(Object obj){
+    public static JsonElement objectToJsonElement(Object obj){
         return jsonToJsonElement(objectToJson_withNulls(obj));
     }
 
-    public boolean compareResponseWithObject(ValidatableResponse response, Object obj){
+    public static boolean compareResponseWithObject(ValidatableResponse response, Object obj){
         log.info("CALLED: compareResponseWithObject()");
         String json = response.extract().asString();
         JsonElement responseArray =  jsonToJsonElement(json);
@@ -89,7 +89,7 @@ public class JsonUtil {
         return responseArray.equals(expectedArray);
     }
 
-    public MapDifference<String, Object> compareTwoJsonsAndGetTheDifference(String json1, String json2) {
+    public static MapDifference<String, Object> compareTwoJsonsAndGetTheDifference(String json1, String json2) {
         log.info("CALLED: compareTwoJsonsAndGetTheDifference()");
         Gson g = new Gson();
         Type mapType = new TypeToken<Map<String, Object>>(){}.getType();
