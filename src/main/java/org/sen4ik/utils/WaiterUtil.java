@@ -12,8 +12,8 @@ public class WaiterUtil {
         } catch (Exception e) { }
     }
 
-    public static void pause(long milliseconds) {
-        log.info("CALLED: pause("  + milliseconds + ")");
+    public static void pauseMilliseconds(long milliseconds) {
+        log.info("CALLED: pauseMilliseconds("  + milliseconds + ")");
         try {
             Thread.sleep(milliseconds);
         } catch (Exception e) { }
