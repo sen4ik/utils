@@ -1,6 +1,5 @@
 package org.sen4ik.utils;
 
-import com.google.common.collect.Ordering;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -14,7 +13,9 @@ public class ArrUtil {
     }
 
     public static boolean isArraySortedAlphabetically(ArrayList<String> l){
-        return Ordering.from(String.CASE_INSENSITIVE_ORDER).isOrdered(l);
+        List<String> listSorted = new ArrayList<String>(l);
+        Collections.sort(listSorted);
+        return listSorted.equals(l);
     }
 
     public static boolean doesArrayContains(String[] arr, String targetValue) {
