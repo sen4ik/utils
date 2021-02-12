@@ -1,6 +1,8 @@
 package org.sen4ik.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.comparator.LastModifiedFileComparator;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.tika.Tika;
 import org.apache.tika.io.TikaInputStream;
 
@@ -11,6 +13,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -187,4 +190,21 @@ public class FileUtil {
         return null;
     }
 
+    public File findLatestFileInTheDirectory(String dirPath, String fileExtension) {
+        System.out.println("CALLED: findLatestFileInTheDirectory()");
+
+        File latestFile = null;
+
+        File dir = new File(dirPath);
+        FileFilter fileFilter = new WildcardFileFilter("*." + fileExtension);
+        File[] files = dir.listFiles(fileFilter);
+
+        if (files.length > 0) {
+            Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+            latestFile = files[0];
+            log.info("latestFile: " + latestFile);
+        }
+
+        return latestFile;
+    }
 }
