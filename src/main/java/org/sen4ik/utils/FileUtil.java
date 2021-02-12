@@ -190,7 +190,7 @@ public class FileUtil {
         return null;
     }
 
-    public File findLatestFileInTheDirectory(String dirPath, String fileExtension) {
+    public static File findLatestFileInTheDirectory(String dirPath, String fileExtension) {
         System.out.println("CALLED: findLatestFileInTheDirectory()");
 
         File latestFile = null;
