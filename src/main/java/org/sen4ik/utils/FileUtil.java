@@ -191,7 +191,7 @@ public class FileUtil {
     }
 
     public static File findLatestFileInTheDirectory(String dirPath, String fileExtension) {
-        System.out.println("CALLED: findLatestFileInTheDirectory()");
+        log.info("CALLED: findLatestFileInTheDirectory()");
 
         File latestFile = null;
 
@@ -203,6 +203,9 @@ public class FileUtil {
             Arrays.sort(files, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
             latestFile = files[0];
             log.info("latestFile: " + latestFile);
+        }
+        else {
+            log.warn(dirPath + " directory is empty");
         }
 
         return latestFile;
