@@ -1,9 +1,8 @@
 # utils
 
-Set of Java utility classes that I use in my projects.
+Set of Java utility classes.
 
-If you want to use it, you need to do two things.
-First, add jitpack repository to the pom.xml:
+If you want to use it, you need to do two things. First, add jitpack repository to the pom.xml:
 ```xml
 <repositories>
   <repository>
@@ -19,7 +18,7 @@ Second, add dependency to the pom.xml:
   <dependency>
     <groupId>com.github.sen4ik</groupId>
     <artifactId>utils</artifactId>
-    <version>d5f6267</version>
+    <version>a7bec14</version>
   </dependency>
 </dependencies>
  ```
